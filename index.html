@@ -10,6 +10,8 @@
 
     <script>
       function onSignIn(googleUser) {
+        console.log('onSignIn callback triggered.');
+        console.log('GoogleUser object:', googleUser);
         var profile = googleUser.getBasicProfile();
         console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
         console.log('Name: ' + profile.getName());
