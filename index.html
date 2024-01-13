@@ -133,6 +133,7 @@
           function signOutOfFB() {
               FB.logout(function(response) {
                 console.log(response); 
+                document.getElementById('status').innerHTML = 'Please log into this webpage.';
               });
           }
       </script>
