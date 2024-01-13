@@ -5,6 +5,10 @@
   </head>
   <body>
       <script src="https://accounts.google.com/gsi/client" async defer></script>
+    
+      <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v18.0&appId=1604159340325077" nonce="Z9Mbtm6u"></script>
+
+    
       <h2>Add Sign-In with Google to your webpage</h2>
   
       <div id="g_id_onload"
@@ -50,10 +54,18 @@
       
       <h2>Add Facebook Login to your webpage</h2>
 
-      <fb:login-button 
-        scope="public_profile,email"
-        onlogin="checkLoginState();">
-      </fb:login-button>
+      <div id="fb-root"></div>
+
+      <div class="fb-login-button" 
+           data-width="200" 
+           data-size="" 
+           data-button-type="" 
+           data-layout="" 
+           data-auto-logout-link="true" 
+           data-use-continue-as="true"
+           onclick="signInToFB();">
+      </div>
+
 
       <div id="status"></div>
     
@@ -78,7 +90,9 @@
               FB.getLoginStatus(function(response) {   // Called after the JS SDK has been initialized.
                 statusChangeCallback(response);        // Returns the login status.
               });
-   
+          };
+
+          function signInToFB() {
               <!-- If you are logged in, automatically get your name and email adress, your public profile information -->
               FB.login(function(response) {
                   if (response.authResponse) {
@@ -89,10 +103,9 @@
                   } else { 
                       <!-- If you are not logged in, the login dialog will open for you to login asking for permission to get your public profile and email -->
                       console.log('User cancelled login or did not fully authorize.'); }
-              });
-  
-          };
-  
+              }, { scope: 'public_profile,email' });
+          }
+        
           function statusChangeCallback(response) {  // Called with the results from FB.getLoginStatus().
               console.log('statusChangeCallback');
               console.log(response);                   // The current login status of the person.
@@ -118,14 +131,16 @@
           }
         
           function signOutOfFB() {
-              FB.logout()
+              FB.logout(function(response) {
+                console.log(response); 
+              });
           }
       </script>
 
     
     
       <!-- Load the JS SDK asynchronously -->
-      <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
+<!--       <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script> -->
 
   </body>
 </html>
