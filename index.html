@@ -2,12 +2,32 @@
 <html lang="en">
   <head>
     <meta name="google-signin-client_id" content="1023428008185-nemgoj4tinckj312hts467vc9cana8cp.apps.googleusercontent.com">
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
   </head>
   <body>
-    <h2>Add Google Sign-In to your webpage</h2>
-    <div class="g-signin2" data-onsuccess="onSignIn"></div>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <h2>Add Sign-In with Google to your webpage</h2>
 
+    <div id="g_id_onload"
+         data-client_id="1023428008185-nemgoj4tinckj312hts467vc9cana8cp.apps.googleusercontent.com"
+         data-context="signin"
+         data-ux_mode="redirect"
+         data-login_uri="https://amnahilmy98.github.io/login"
+         data-nonce=""
+         data-auto_prompt="false">
+    </div>
+    
+    <div class="g_id_signin"
+         data-type="standard"
+         data-shape="pill"
+         data-theme="filled_black"
+         data-text="signin"
+         data-size="large"
+         data-logo_alignment="left"
+         data-width="200px">
+    </div>
+    
+    <a href="#" onclick="signOut();">Sign out</a>
+    
     <script>
       function onSignIn(googleUser) {
         console.log('onSignIn callback triggered.');
@@ -18,16 +38,13 @@
         console.log('Image URL: ' + profile.getImageUrl());
         console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
       }
-    </script>
-
-    <a href="#" onclick="signOut();">Sign out</a>
-    <script>
-      function signOut() {
-        var auth2 = gapi.auth2.getAuthInstance();
-        auth2.signOut().then(function () {
-          console.log('User signed out.');
-        });
-      }
+      
+      // function signOut() {
+      //   var auth2 = gapi.auth2.getAuthInstance();
+      //   auth2.signOut().then(function () {
+      //     console.log('User signed out.');
+      //   });
+      // }
     </script>
 
     
